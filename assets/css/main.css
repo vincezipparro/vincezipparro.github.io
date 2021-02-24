@@ -4551,17 +4551,9 @@ sup, sub {
   border: 2px solid #FFF;
   transition: all 0.5s;
 }
-.header-icons .icon:hover {
-  color: #1a222c;
-  background: #FFF;
-}
 .header-icons .icon:active {
   color: #1a222c;
   background: #FFF;
-}
-.header-icons .icon:visited {
-  color: rgba(255, 255, 255, 0);
-  background: rgba(255, 255, 255, 0);
 }
 @media only screen and (min-width: 768px) {
   .header-icons .icon {
