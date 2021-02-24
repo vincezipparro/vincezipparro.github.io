@@ -2,7 +2,6 @@
   "name": "jekyll-theme-minimal-resume",
   "version": "1.0.0",
   "description": "This is a simple Jekyll theme for a minimal resume website.",
-  
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,11 +19,9 @@
     "gulp-less": "^4.0.1",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^4.1.0",
-    "gulp-uglify": "^3.0.2",
-    "sass": "^1.32.8"
+    "gulp-uglify": "^3.0.2"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "node-sass": "^5.0.0"
+    "gulp": "^4.0.2"
   }
 }
