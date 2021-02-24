@@ -92,6 +92,9 @@
       color: $main;
       background: #FFF;
     }
+    &:visited{
+      color: $main;
+    }
     @media only screen and (min-width:$cut) {
       width: 30px;
       height: 30px;
@@ -137,9 +140,4 @@
         color: $sec;
       }
   }
-}
-
-.after-click:visited
-{
-  color: $main;
 }
