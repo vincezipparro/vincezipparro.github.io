@@ -84,14 +84,14 @@
     border-radius: 50%;
     border: 2px solid #FFF;
     transition: all .5s;
-    &:hover {
-      color: $main;
-      background: #FFF;
-    }
-    &:active {
-      color: $main;
-      background: rgba(255, 255, 255, 0);
-    }
+    // &:hover {
+    //   color: $main;
+    //   background: #FFF;
+    // }
+    // &:active {
+    //   color: $main;
+    //   background: rgba(255, 255, 255, 0);
+    // }
     @media only screen and (min-width:$cut) {
       width: 30px;
       height: 30px;
