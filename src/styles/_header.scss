@@ -90,7 +90,10 @@
     }
     &:active {
       color: $main;
-      background: rgba(255, 255, 255, 0);
+      background: #FFF;
+    }
+    &:visited {
+      color: $main;
     }
     @media only screen and (min-width:$cut) {
       width: 30px;
