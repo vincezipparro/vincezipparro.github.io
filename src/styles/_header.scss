@@ -94,6 +94,7 @@
     }
     &:visited {
       color: $main;
+      background: #FFF;
     }
     @media only screen and (min-width:$cut) {
       width: 30px;
