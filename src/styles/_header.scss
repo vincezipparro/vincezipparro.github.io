@@ -88,6 +88,10 @@
       color: $main;
       background: #FFF;
     }
+    &:focus
+    {
+      color: $main;
+    }
     // &:active {
     //   color: $main;
     //   background: #FFF;
