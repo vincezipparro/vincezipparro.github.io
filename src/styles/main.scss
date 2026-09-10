@@ -74,7 +74,11 @@ a {
   padding: 1.4rem clamp(1.25rem, 4vw, 4rem);
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   color: white;
-  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+  // backdrop-filter is left out of the transition on purpose: interpolating a
+  // blur recomposites the header every frame and visibly flickers.
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .site-header.is-scrolled {
@@ -825,20 +829,41 @@ a {
 }
 
 .contact-button {
-  display: flex;
-  width: min(100%, 24rem);
+  display: inline-flex;
+  max-width: 100%;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.15rem 1.3rem;
+  gap: 1.6rem;
+  padding: 0.55rem 0.55rem 0.55rem 2rem;
+  border: 1px solid var(--ink);
+  border-radius: 100px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.contact-button-arrow {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
   background: var(--ink);
-  color: white;
+  color: var(--acid);
   font-size: 0.9rem;
-  transition: background-color 200ms ease, transform 200ms ease;
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
 }
 
 .contact-button:hover {
-  background: var(--blue);
+  background: var(--ink);
+  color: white;
   transform: translateY(-0.15rem);
+}
+
+.contact-button:hover .contact-button-arrow {
+  background: var(--acid);
+  color: var(--ink);
+  transform: translate(0.1rem, -0.1rem);
 }
 
 .social-links {

@@ -51,9 +51,19 @@ const observedSections = navLinks
   .map((link) => document.querySelector(link.hash))
   .filter(Boolean);
 
+// Separate enter and exit points, so scrolling around the hero boundary can't
+// flip the header back and forth on every stray pixel.
 const syncHeader = () => {
   if (!header || !hero) return;
-  header.classList.toggle("is-scrolled", window.scrollY > hero.offsetHeight - 72);
+
+  const enterAt = hero.offsetHeight - 72;
+  const isScrolled = header.classList.contains("is-scrolled");
+
+  if (!isScrolled && window.scrollY > enterAt) {
+    header.classList.add("is-scrolled");
+  } else if (isScrolled && window.scrollY < enterAt - 90) {
+    header.classList.remove("is-scrolled");
+  }
 };
 
 const syncActiveNav = () => {
@@ -80,10 +90,16 @@ const syncActiveNav = () => {
   });
 };
 
+let scrollFrame = 0;
 const onScroll = () => {
-  updateScrollProgress();
-  syncHeader();
-  syncActiveNav();
+  if (scrollFrame) return;
+
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0;
+    updateScrollProgress();
+    syncHeader();
+    syncActiveNav();
+  });
 };
 
 const revealTargets = document.querySelectorAll([
