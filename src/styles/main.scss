@@ -286,6 +286,82 @@ a {
   color: var(--ink);
 }
 
+.hero-clouds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+// Two identical halves tiled across a double-width layer, so translating by
+// half the layer lands on the same cloud shapes and the drift never seams.
+.cloud-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  animation: cloud-drift linear infinite;
+}
+
+.cloud-layer-far {
+  opacity: 0.6;
+  animation-duration: 150s;
+  background-image:
+    radial-gradient(38% 26% at 14% 28%, rgba(255, 255, 255, 0.1), transparent 70%),
+    radial-gradient(30% 20% at 44% 18%, rgba(255, 255, 255, 0.07), transparent 70%),
+    radial-gradient(34% 24% at 74% 33%, rgba(255, 255, 255, 0.09), transparent 70%);
+}
+
+.cloud-layer-near {
+  opacity: 0.8;
+  animation-duration: 88s;
+  background-image:
+    radial-gradient(30% 19% at 8% 46%, rgba(255, 255, 255, 0.08), transparent 70%),
+    radial-gradient(26% 17% at 56% 26%, rgba(255, 255, 255, 0.06), transparent 70%),
+    radial-gradient(32% 21% at 87% 41%, rgba(255, 255, 255, 0.07), transparent 70%);
+}
+
+.hero-skyline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  // Height tracks viewport width so the container stays wider than it is tall,
+  // which keeps the panorama scaling by height rather than cropping the towers.
+  height: clamp(10rem, 15vw, 26rem);
+  mask-image: linear-gradient(to bottom, transparent, black 30%);
+  transform: translate3d(calc(var(--hero-x, 0px) * 0.35), 0, 0);
+}
+
+.hero-skyline svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.skyline-mass {
+  fill: #0a1214;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 1.5;
+}
+
+.skyline-antennas {
+  fill: rgba(255, 255, 255, 0.22);
+}
+
+.skyline-lit rect {
+  fill: var(--acid);
+  opacity: 0.45;
+  animation: window-flicker 7s steps(1, end) infinite;
+}
+
+.skyline-lit rect:nth-child(4n + 1) { animation-delay: -0.5s; }
+.skyline-lit rect:nth-child(4n + 2) { animation-delay: -2.6s; }
+.skyline-lit rect:nth-child(4n + 3) { animation-delay: -4.1s; }
+.skyline-lit rect:nth-child(4n) { animation-delay: -5.8s; }
+
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -294,7 +370,7 @@ a {
     linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   background-size: 7vw 7vw;
-  mask-image: linear-gradient(to bottom, transparent, black 45%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 40%, black 88%, transparent);
   transform: translate3d(var(--hero-x, 0px), var(--hero-y, 0px), 0);
 }
 
@@ -946,6 +1022,17 @@ a {
 @keyframes blink {
   0%, 49% { opacity: 1; }
   50%, 100% { opacity: 0; }
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes window-flicker {
+  0%, 46% { opacity: 0.45; }
+  47%, 53% { opacity: 0.08; }
+  54%, 100% { opacity: 0.45; }
 }
 
 @media (max-width: 800px) {
