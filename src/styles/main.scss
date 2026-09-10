@@ -414,6 +414,37 @@ a {
   color: var(--muted);
 }
 
+.timeline-copy .role-history {
+  margin: 0.5rem 0 1.25rem;
+  color: var(--blue);
+  font-size: 0.85rem;
+}
+
+.detail-list {
+  max-width: 46rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  list-style: none;
+}
+
+.detail-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.detail-list li::before {
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--orange);
+  content: "";
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;

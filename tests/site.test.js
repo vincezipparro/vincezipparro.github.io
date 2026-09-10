@@ -25,6 +25,35 @@ test("metadata reflects Vince's current professional focus", () => {
   assert.match(config, /description:.*quality engineering.*automation.*release engineering/i);
 });
 
+test("experience timeline covers every employer in the career history", () => {
+  for (const employer of [
+    "Invoca",
+    "Benchmark Analytics",
+    "The Coda Collection",
+    "DialogTech",
+    "SA Ignite",
+    "Coyote Logistics",
+  ]) {
+    assert.ok(layout.includes(employer), `timeline is missing ${employer}`);
+  }
+});
+
+test("each timeline entry is dated and backed by detail bullets", () => {
+  const entries = [...layout.matchAll(/<article class="timeline-item">([\s\S]*?)<\/article>/g)];
+  assert.ok(entries.length >= 6, `expected at least 6 roles, found ${entries.length}`);
+
+  for (const [, entry] of entries) {
+    assert.match(entry, /<span>[A-Z][a-z]{2} \d{4} — (Present|[A-Z][a-z]{2} \d{4})<\/span>/);
+    assert.match(entry, /<ul class="detail-list">[\s\S]*?<li>/);
+  }
+});
+
+test("toolbelt lists the technologies used across those roles", () => {
+  for (const tool of ["Cypress", "RSpec", "Rest Assured", "Appium", "Buildkite", "Datadog"]) {
+    assert.ok(layout.includes(tool), `toolbelt is missing ${tool}`);
+  }
+});
+
 test("external links opened in a new tab are protected", () => {
   const files = [
     "_layouts/default.html",
