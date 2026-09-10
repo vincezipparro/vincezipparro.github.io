@@ -54,6 +54,15 @@ test("toolbelt lists the technologies used across those roles", () => {
   }
 });
 
+test("current Invoca role covers Mosaic, Claude Code, and AI orchestration", () => {
+  const invoca = layout.split('<article class="timeline-item">')[1];
+  assert.match(invoca, /Mosaic/);
+  assert.match(invoca, /consumed by other teams/);
+  assert.match(invoca, /Claude Code/);
+  assert.match(invoca, /AI orchestration/);
+  assert.match(invoca, /framework development/i);
+});
+
 test("external links opened in a new tab are protected", () => {
   const files = [
     "_layouts/default.html",
