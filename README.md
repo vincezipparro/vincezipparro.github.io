@@ -1,3 +1,14 @@
-NOTES:
+# vincezipparro.me
 
-To compile changes done to css and see them reflectec in `main.css` run `sass src/styles/main.scss assets/css/main.css` in cmd line
+The personal portfolio of Vince Zipparro, built with Jekyll and published with GitHub Pages.
+
+## Local development
+
+```sh
+bundle install
+npm install
+npm run build
+bundle exec jekyll serve
+```
+
+Run the structural and accessibility checks with `npm test`.

@@ -1,13 +1,244 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+<!doctype html>
 <html lang="en">
   {% include head.html %}
   <body>
-      {% include header.html %}
-      <section id="about">
-        {% include about.html %}
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Vince Zipparro, home">
+        <span>VZ</span>
+        <span class="wordmark-dot" aria-hidden="true"></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="mailto:{{ site.email }}">Let’s talk <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-kicker">
+          <span class="status-dot" aria-hidden="true"></span>
+          Chicago-based quality engineer
+        </div>
+        <h1 id="hero-title">
+          I build confidence<br>
+          <span>into software.</span>
+        </h1>
+        <div class="hero-footer">
+          <p class="hero-intro">
+            I’m Vince, a Software Engineer in Test who turns complex systems into
+            dependable products through automation, thoughtful release practices,
+            and a relentless curiosity for how things work.
+          </p>
+          <a class="circle-link" href="#about" aria-label="Explore Vince's work">
+            <span>Explore</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+        <div class="hero-grid" aria-hidden="true"></div>
       </section>
-        {{ content }}
-      {% include footer.html %}
+
+      <section class="marquee" aria-label="Areas of expertise">
+        <div class="marquee-track">
+          <span>Quality Engineering</span><i>✦</i>
+          <span>Test Automation</span><i>✦</i>
+          <span>Release Engineering</span><i>✦</i>
+          <span>Developer Experience</span><i>✦</i>
+          <span>Quality Engineering</span><i>✦</i>
+          <span>Test Automation</span><i>✦</i>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about" aria-labelledby="about-title">
+        <div class="section-label"><span>01</span> About</div>
+        <div class="about-copy">
+          <p class="eyebrow">Problem finder. Problem solver.</p>
+          <h2 id="about-title">Quality is more than a gate. It’s a way of building.</h2>
+          <div class="about-columns">
+            <p>
+              For more than a decade, I’ve worked at the intersection of software
+              quality, automation, and delivery. I partner with engineers to make
+              systems easier to test, releases safer to ship, and failures faster
+              to understand.
+            </p>
+            <p>
+              My path—from shipping an independent iOS app to leading quality work
+              for data-driven products—has taught me to approach every system with
+              empathy, technical depth, and an owner’s mindset.
+            </p>
+          </div>
+        </div>
+        <aside class="principle-card">
+          <span class="principle-number">10+</span>
+          <p>years building, testing, and improving software</p>
+          <div class="principle-line"></div>
+          <p class="principle-note">Curious by default.<br>Practical by design.</p>
+        </aside>
+      </section>
+
+      <section class="section experience-section" id="experience" aria-labelledby="experience-title">
+        <div class="section-label"><span>02</span> Experience</div>
+        <div class="section-heading">
+          <p class="eyebrow">The path so far</p>
+          <h2 id="experience-title">From testing features to shaping how teams deliver.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span>Current</span>
+              <span>Invoca</span>
+            </div>
+            <div class="timeline-copy">
+              <h3>Software Engineer in Test II</h3>
+              <p>
+                Building quality into a modern software platform through test
+                automation, engineering partnership, and reliable delivery practices.
+              </p>
+              <ul class="tag-list" aria-label="Focus areas">
+                <li>Automation</li><li>CI/CD</li><li>Platform quality</li>
+              </ul>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span>Previously</span>
+              <span>Benchmark Analytics</span>
+            </div>
+            <div class="timeline-copy">
+              <h3>Senior QA Engineer · QA Engineer</h3>
+              <p>
+                Advanced through quality engineering roles while helping deliver
+                dependable data and analytics software for public-sector teams.
+              </p>
+              <ul class="tag-list" aria-label="Focus areas">
+                <li>Quality strategy</li><li>Web testing</li><li>Data systems</li>
+              </ul>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span>Independent</span>
+              <span>BAR-TABS</span>
+            </div>
+            <div class="timeline-copy">
+              <h3>Developer</h3>
+              <p>
+                Took an iOS product from idea to the App Store—designing, building,
+                testing, and shipping the full customer experience.
+              </p>
+              <ul class="tag-list" aria-label="Focus areas">
+                <li>Swift</li><li>iOS</li><li>Product delivery</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section work-section" id="work" aria-labelledby="work-title">
+        <div class="section-label"><span>03</span> Selected work</div>
+        <div class="section-heading work-heading">
+          <div>
+            <p class="eyebrow">A few things I’ve built</p>
+            <h2 id="work-title">Work that connects craft with real-world utility.</h2>
+          </div>
+          <a class="text-link" href="https://github.com/vincezipparro" target="_blank" rel="noopener noreferrer">
+            View GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="project-grid">
+          <a class="project-card project-featured" href="https://apps.apple.com/us/app/bar-tabs/id1447581838" target="_blank" rel="noopener noreferrer">
+            <div class="project-topline">
+              <span>01 / Product</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="phone-art" aria-hidden="true">
+              <div class="phone">
+                <span class="phone-speaker"></span>
+                <span class="bar-tabs-mark">BAR<br>TABS</span>
+                <span class="phone-button">Discover nearby</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>BAR-TABS</h3>
+              <p>An independently designed and shipped iOS app for discovering local spots and managing a night out.</p>
+              <span>Swift · iOS · App Store</span>
+            </div>
+          </a>
+          <a class="project-card project-secondary" href="https://github.com/vincezipparro" target="_blank" rel="noopener noreferrer">
+            <div class="project-topline">
+              <span>02 / Lab</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="code-art" aria-hidden="true">
+              <span>describe</span><b>(</b><em>"better software"</em><b>)</b>
+              <small>it("starts with curiosity")</small>
+              <small>expect(quality).toBeBuiltIn()</small>
+            </div>
+            <div class="project-copy">
+              <h3>Engineering experiments</h3>
+              <p>A public archive of learning projects across mobile, web, automation, and computer science.</p>
+              <span>Ruby · Swift · JavaScript · C#</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
+        <div class="section-label"><span>04</span> Capabilities</div>
+        <div class="section-heading">
+          <p class="eyebrow">Tools change. Fundamentals endure.</p>
+          <h2 id="capabilities-title">A quality engineering toolkit built around outcomes.</h2>
+        </div>
+        <div class="capability-grid">
+          <article>
+            <span>01</span>
+            <h3>Automation systems</h3>
+            <p>Maintainable test suites and feedback loops that help teams move quickly without trading away confidence.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Release confidence</h3>
+            <p>CI/CD thinking, risk-based testing, and practical checks that make shipping routine instead of dramatic.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Full-stack quality</h3>
+            <p>Hands-on testing across APIs, data, web, mobile, and the infrastructure connecting the experience.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Engineering partnership</h3>
+            <p>Clear communication, useful failure signals, and quality practices that strengthen the whole development team.</p>
+          </article>
+        </div>
+        <div class="toolbelt" aria-label="Technical toolkit">
+          <span>Ruby</span><span>JavaScript</span><span>Swift</span><span>SQL</span>
+          <span>RSpec</span><span>Capybara</span><span>Selenium</span><span>GitHub Actions</span>
+          <span>AWS</span><span>Git</span><span>REST APIs</span><span>CI/CD</span>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">Have a hard problem?</p>
+        <h2 id="contact-title">Let’s make it<br><span>work better.</span></h2>
+        <div class="contact-row">
+          <a class="contact-button" href="mailto:{{ site.email }}">
+            Start a conversation <span aria-hidden="true">↗</span>
+          </a>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://www.linkedin.com/in/vince-zipparro-aba09959" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/vincezipparro" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+      </section>
+      {{ content }}
+    </main>
+
+    {% include footer.html %}
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </body>
 </html>
