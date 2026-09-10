@@ -4,7 +4,7 @@
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header" data-site-header>
       <a class="wordmark" href="#top" aria-label="Vince Zipparro, home">
         <span>VZ</span>
         <span class="wordmark-dot" aria-hidden="true"></span>
@@ -44,12 +44,18 @@
 
       <section class="marquee" aria-label="Areas of expertise">
         <div class="marquee-track">
-          <span>Quality Engineering</span><i>✦</i>
-          <span>Test Automation</span><i>✦</i>
-          <span>Release Engineering</span><i>✦</i>
-          <span>Developer Experience</span><i>✦</i>
-          <span>Quality Engineering</span><i>✦</i>
-          <span>Test Automation</span><i>✦</i>
+          <div class="marquee-group">
+            <span>Quality Engineering</span><i>✦</i>
+            <span>Test Automation</span><i>✦</i>
+            <span>Release Engineering</span><i>✦</i>
+            <span>Developer Experience</span><i>✦</i>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span>Quality Engineering</span><i>✦</i>
+            <span>Test Automation</span><i>✦</i>
+            <span>Release Engineering</span><i>✦</i>
+            <span>Developer Experience</span><i>✦</i>
+          </div>
         </div>
       </section>
 
@@ -74,7 +80,7 @@
           </div>
         </div>
         <aside class="principle-card">
-          <span class="principle-number">10+</span>
+          <span class="principle-number" data-count="10">10+</span>
           <p>years building, testing, and improving software</p>
           <div class="principle-line"></div>
           <p class="principle-note">Curious by default.<br>Practical by design.</p>
@@ -260,7 +266,7 @@
             <div class="code-art" aria-hidden="true">
               <span>describe</span><b>(</b><em>"better software"</em><b>)</b>
               <small>it("starts with curiosity")</small>
-              <small>expect(quality).toBeBuiltIn()</small>
+              <small>expect(quality).toBeBuiltIn()<span class="code-caret" aria-hidden="true"></span></small>
             </div>
             <div class="project-copy">
               <h3>Engineering experiments</h3>

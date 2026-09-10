@@ -63,7 +63,7 @@ a {
 }
 
 .site-header {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
@@ -74,6 +74,14 @@ a {
   padding: 1.4rem clamp(1.25rem, 4vw, 4rem);
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   color: white;
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(241, 239, 232, 0.92);
+  border-bottom-color: var(--line);
+  color: var(--ink);
+  backdrop-filter: blur(16px);
 }
 
 .wordmark {
@@ -93,6 +101,7 @@ a {
   margin-top: 0.45rem;
   border-radius: 50%;
   background: var(--acid);
+  animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
 .site-header nav {
@@ -107,6 +116,7 @@ a {
 .site-header nav a,
 .social-links a,
 .text-link {
+  position: relative;
   transition: opacity 180ms ease;
 }
 
@@ -116,12 +126,39 @@ a {
   opacity: 0.55;
 }
 
+.site-header nav a.is-active {
+  opacity: 1;
+}
+
+.site-header nav a.is-active::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.4rem;
+  left: 0;
+  height: 2px;
+  background: var(--acid);
+  content: "";
+}
+
+.site-header.is-scrolled nav a.is-active::after {
+  background: var(--orange);
+}
+
 .header-cta {
   justify-self: end;
   padding-bottom: 0.15rem;
   border-bottom: 1px solid currentColor;
   font-size: 0.8rem;
   font-weight: 600;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.header-cta:hover {
+  color: var(--acid);
+}
+
+.site-header.is-scrolled .header-cta:hover {
+  color: var(--orange);
 }
 
 .hero {
@@ -147,6 +184,7 @@ a {
   box-shadow:
     0 0 0 5vw rgba(255, 255, 255, 0.025),
     0 0 0 10vw rgba(255, 255, 255, 0.018);
+  animation: orbit-drift 22s ease-in-out infinite;
   content: "";
 }
 
@@ -172,6 +210,7 @@ a {
   gap: 0.65rem;
   margin-bottom: 2rem;
   color: rgba(255, 255, 255, 0.68);
+  animation: rise-in 0.85s ease both;
 }
 
 .status-dot {
@@ -180,6 +219,7 @@ a {
   border-radius: 50%;
   background: var(--acid);
   box-shadow: 0 0 0 0.3rem rgba(217, 255, 67, 0.12);
+  animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
 .hero h1 {
@@ -191,6 +231,7 @@ a {
   font-weight: 500;
   letter-spacing: -0.075em;
   line-height: 0.88;
+  animation: rise-in 0.95s ease 0.1s both;
 }
 
 .hero h1 span {
@@ -205,6 +246,7 @@ a {
   margin-top: clamp(3rem, 8vh, 6rem);
   grid-template-columns: minmax(17rem, 34rem) 1fr;
   gap: 2rem;
+  animation: rise-in 0.95s ease 0.22s both;
 }
 
 .hero-intro {
@@ -230,6 +272,10 @@ a {
   transition: 200ms ease;
 }
 
+.circle-link span[aria-hidden] {
+  animation: bob 1.7s ease-in-out infinite;
+}
+
 .circle-link:hover {
   border-color: var(--acid);
   background: var(--acid);
@@ -245,6 +291,7 @@ a {
     linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   background-size: 7vw 7vw;
   mask-image: linear-gradient(to bottom, transparent, black 45%, transparent);
+  transform: translate3d(var(--hero-x, 0px), var(--hero-y, 0px), 0);
 }
 
 .marquee {
@@ -253,22 +300,35 @@ a {
   background: var(--acid);
 }
 
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
 .marquee-track {
   display: flex;
   width: max-content;
   align-items: center;
-  gap: 2rem;
-  animation: marquee 24s linear infinite;
+  animation: marquee var(--marquee-duration, 24s) linear infinite;
   font-family: var(--mono);
   font-size: 0.72rem;
   text-transform: uppercase;
 }
 
-.marquee-track i {
+// Every group is identical and carries its own trailing space, so translating
+// the track by exactly half its width lands on a seamless repeat.
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.marquee-group i {
   font-style: normal;
 }
 
 @keyframes marquee {
+  from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
@@ -329,6 +389,11 @@ a {
   background: var(--blue);
   color: white;
   transform: rotate(2deg);
+  transition: transform 280ms ease;
+}
+
+.principle-card:hover {
+  transform: rotate(0deg);
 }
 
 .principle-number {
@@ -386,6 +451,11 @@ a {
   border-bottom: 1px solid var(--line);
   grid-template-columns: minmax(10rem, 0.75fr) 1.8fr;
   gap: 2rem;
+  transition: background-color 200ms ease;
+}
+
+.timeline-item:hover .timeline-meta span:first-child {
+  color: var(--ink);
 }
 
 .timeline-meta {
@@ -397,6 +467,7 @@ a {
 
 .timeline-meta span:first-child {
   color: var(--orange);
+  transition: color 180ms ease;
 }
 
 .timeline-copy h3,
@@ -458,6 +529,13 @@ a {
   padding: 0.35rem 0.65rem;
   border: 1px solid var(--line);
   border-radius: 100px;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.tag-list li:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
 }
 
 .work-section > * {
@@ -495,11 +573,36 @@ a {
   flex-direction: column;
   overflow: hidden;
   padding: 1.4rem;
-  transition: transform 220ms ease;
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .project-card:hover {
   transform: translateY(-0.35rem);
+}
+
+.project-featured:hover .phone {
+  transform: rotate(0deg) translateY(-0.4rem);
+}
+
+.project-arrow {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.project-card:hover .project-arrow {
+  background: var(--ink);
+  color: white;
+  transform: rotate(35deg);
+}
+
+.project-secondary:hover .project-arrow {
+  background: var(--acid);
+  color: var(--ink);
 }
 
 .project-featured {
@@ -514,15 +617,6 @@ a {
 .project-topline {
   display: flex;
   justify-content: space-between;
-}
-
-.project-arrow {
-  display: grid;
-  width: 2.5rem;
-  height: 2.5rem;
-  place-items: center;
-  border: 1px solid currentColor;
-  border-radius: 50%;
 }
 
 .phone-art {
@@ -545,6 +639,7 @@ a {
   background: var(--acid);
   box-shadow: 1.2rem 1.2rem 0 rgba(17, 27, 30, 0.15);
   transform: rotate(7deg);
+  transition: transform 320ms ease;
 }
 
 .phone-speaker {
@@ -599,6 +694,16 @@ a {
   color: rgba(255, 255, 255, 0.45);
 }
 
+.code-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  margin-left: 0.2ch;
+  vertical-align: -0.12em;
+  background: var(--acid);
+  animation: blink 1s steps(1) infinite;
+}
+
 .project-copy {
   position: relative;
 }
@@ -646,6 +751,11 @@ a {
   padding: 2rem;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 200ms ease;
+}
+
+.capability-grid article:hover {
+  background: rgba(217, 255, 67, 0.07);
 }
 
 .capability-grid article > span {
@@ -675,6 +785,13 @@ a {
   padding: 0.5rem 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 100px;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.toolbelt span:hover {
+  background: var(--acid);
+  border-color: var(--acid);
+  color: var(--ink);
 }
 
 .contact-section {
@@ -716,11 +833,12 @@ a {
   background: var(--ink);
   color: white;
   font-size: 0.9rem;
-  transition: 200ms ease;
+  transition: background-color 200ms ease, transform 200ms ease;
 }
 
 .contact-button:hover {
   background: var(--blue);
+  transform: translateY(-0.15rem);
 }
 
 .social-links {
@@ -754,6 +872,55 @@ a {
 
 .footer-mark {
   color: white;
+}
+
+.js .reveal {
+  opacity: 0;
+  translate: 0 1.35rem;
+  transition: opacity 700ms ease, translate 700ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0.3rem rgba(217, 255, 67, 0.12);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 0.55rem rgba(217, 255, 67, 0.22);
+  }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(0.28rem); }
+}
+
+@keyframes orbit-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-3%, 4%) scale(1.04); }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 @media (max-width: 800px) {
@@ -859,6 +1026,10 @@ a {
     transform: scale(0.85) rotate(7deg);
   }
 
+  .project-featured:hover .phone {
+    transform: scale(0.85) rotate(2deg);
+  }
+
   .social-links {
     gap: 1.2rem;
   }
@@ -875,5 +1046,19 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .js .reveal,
+  .hero-kicker,
+  .hero h1,
+  .hero-footer,
+  .hero-grid {
+    opacity: 1;
+    transform: none;
+    translate: 0 0;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: running;
   }
 }
