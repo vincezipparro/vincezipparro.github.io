@@ -5,7 +5,7 @@
   "scripts": {
     "test": "node --test tests/site.test.js",
     "build:css": "sass src/styles/main.scss assets/css/main.css --style=compressed --no-source-map",
-    "build": "npm run build:css && cp src/js/app.js assets/js/main.js && bundle exec jekyll build"
+    "build": "npm run build:css && cp src/js/app.js assets/js/main.js && cp src/js/enhancements.js assets/js/enhancements.js && bundle exec jekyll build"
   },
   "author": "Vince Zipparro",
   "license": "MIT",

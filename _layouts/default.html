@@ -5,7 +5,7 @@
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header" data-site-header>
-      <a class="wordmark" href="#top" aria-label="Vince Zipparro, home">
+      <a class="wordmark" href="#top" aria-label="Vince Zipparro, home" data-wordmark-egg>
         <span>VZ</span>
         <span class="wordmark-dot" aria-hidden="true"></span>
       </a>
@@ -34,7 +34,7 @@
             dependable products through automation, thoughtful release practices,
             and a relentless curiosity for how things work.
           </p>
-          <a class="circle-link" href="#about" aria-label="Explore Vince's work">
+          <a class="circle-link" href="#about" aria-label="Explore Vince's work" data-magnetic>
             <span>Explore</span>
             <span aria-hidden="true">↓</span>
           </a>
@@ -319,7 +319,7 @@
         <p class="eyebrow">Have a hard problem?</p>
         <h2 id="contact-title">Let’s make it<br><span>work better.</span></h2>
         <div class="contact-row">
-          <a class="contact-button" href="mailto:{{ site.email }}">
+          <a class="contact-button" href="mailto:{{ site.email }}" data-magnetic data-copy-email="{{ site.email }}">
             <span class="contact-button-label">Start a conversation</span>
             <span class="contact-button-arrow" aria-hidden="true">↗</span>
           </a>
@@ -332,7 +332,9 @@
       {{ content }}
     </main>
 
+    <div class="copy-toast" role="status" aria-live="polite" aria-atomic="true"></div>
     {% include footer.html %}
+    <script src="{{ '/assets/js/enhancements.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </body>
 </html>

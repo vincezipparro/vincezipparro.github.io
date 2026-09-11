@@ -7,6 +7,9 @@ const root = path.resolve(__dirname, "..");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const layout = read("_layouts/default.html");
 const config = read("_config.yml");
+const styles = read("src/styles/main.scss");
+const enhancementsPath = path.join(root, "src/js/enhancements.js");
+const enhancements = fs.existsSync(enhancementsPath) ? require(enhancementsPath) : {};
 
 test("page exposes accessible navigation and primary content landmarks", () => {
   assert.match(layout, /<a[^>]+class="skip-link"[^>]+href="#main-content"/);
@@ -73,5 +76,58 @@ test("external links opened in a new tab are protected", () => {
     const unsafe = [...read(file).matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)]
       .filter(([tag]) => !/rel="[^"]*noopener[^"]*"/.test(tag));
     assert.equal(unsafe.length, 0, `${file} contains unsafe target="_blank" links`);
+  }
+});
+
+test("skyline follows Chicago local time across four day phases", () => {
+  assert.equal(typeof enhancements.getChicagoPhase, "function");
+
+  if (enhancements.getChicagoPhase) {
+    assert.equal(enhancements.getChicagoPhase(6), "dawn");
+    assert.equal(enhancements.getChicagoPhase(12), "day");
+    assert.equal(enhancements.getChicagoPhase(19), "dusk");
+    assert.equal(enhancements.getChicagoPhase(23), "night");
+  }
+
+  for (const phase of ["dawn", "day", "dusk", "night"]) {
+    assert.match(styles, new RegExp(`data-skyline-phase="${phase}"`));
+  }
+});
+
+test("primary calls to action opt into restrained magnetic motion", () => {
+  assert.match(layout, /class="circle-link"[^>]+data-magnetic/);
+  assert.match(layout, /class="contact-button"[^>]+data-magnetic/);
+  assert.match(styles, /--magnetic-x/);
+  assert.match(styles, /prefers-reduced-motion:\s*reduce/);
+});
+
+test("contact action copies the email and announces feedback accessibly", async () => {
+  assert.match(layout, /class="contact-button"[^>]+data-copy-email/);
+  assert.match(layout, /class="copy-toast"[^>]+role="status"[^>]+aria-live="polite"/);
+  assert.equal(typeof enhancements.copyEmail, "function");
+
+  if (enhancements.copyEmail) {
+    let copied = "";
+    await enhancements.copyEmail("vince@example.com", {
+      writeText: async (value) => { copied = value; },
+    });
+    assert.equal(copied, "vince@example.com");
+  }
+});
+
+test("site details include branded selection and a wordmark easter egg", () => {
+  assert.match(styles, /::selection/);
+  assert.match(layout, /class="wordmark"[^>]+data-wordmark-egg/);
+  assert.equal(typeof enhancements.createWordmarkCounter, "function");
+
+  if (enhancements.createWordmarkCounter) {
+    let passes = 0;
+    const countClick = enhancements.createWordmarkCounter(() => { passes += 1; });
+    for (let click = 0; click < 4; click += 1) countClick();
+    assert.equal(passes, 0);
+    countClick();
+    assert.equal(passes, 1);
+    for (let click = 0; click < 5; click += 1) countClick();
+    assert.equal(passes, 2);
   }
 });
