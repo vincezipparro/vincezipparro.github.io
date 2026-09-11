@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111b1e;
+    --paper: #f1efe8;
+    --acid: #d9ff43;
+    --mono: "DM Mono", monospace;
+    --sans: "Manrope", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--sans);
+  }
+  .grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.13;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 84px 84px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 88%, transparent);
+  }
+  .ring {
+    position: absolute;
+    top: -80px;
+    right: -140px;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05), inset 0 0 120px rgba(217,255,67,0.05);
+  }
+  .top, .bottom, .middle { position: relative; z-index: 1; }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .mark { display: flex; align-items: center; gap: 18px; }
+  .mark svg { width: 56px; height: 56px; display: block; }
+  .mark span {
+    font-family: var(--mono);
+    font-size: 20px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.68);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--acid); }
+  h1 {
+    margin: 0;
+    font-size: 94px;
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+  }
+  h1 em { font-style: normal; color: var(--acid); }
+  .sub {
+    margin: 26px 0 0;
+    max-width: 660px;
+    font-size: 23px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.7);
+  }
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255,255,255,0.16);
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.58);
+  }
+  .bottom i { font-style: normal; color: var(--acid); padding: 0 12px; }
+  .bottom .url { color: #fff; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div>
+    <div class="ring"></div>
+
+    <div class="top">
+      <div class="mark">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="13" fill="#1a2528"/>
+          <g fill="none" stroke="#f1efe8" stroke-width="4" stroke-miterlimit="8">
+            <path d="M13 20 18.5 37.4 24 20"/><path d="M29 22H43"/><path d="M41.4 22 30.6 42"/><path d="M29 42H43"/>
+          </g><circle cx="49.5" cy="41.4" r="2.6" fill="#d9ff43"/></svg>
+        <span>vincezipparro.me</span>
+      </div>
+      <div class="kicker"><span class="dot"></span> Chicago-based</div>
+    </div>
+
+    <div class="middle">
+      <h1>Vince Zipparro<br><em>Software Engineer</em></h1>
+      <p class="sub">I turn complex systems into dependable products through automation, thoughtful release practices, and a relentless curiosity for how things work.</p>
+    </div>
+
+    <div class="bottom">
+      <div>Quality engineering <i>&#10022;</i> Test automation <i>&#10022;</i> Release engineering</div>
+      <div class="url">10+ years</div>
+    </div>
+  </div>
+</body>
+</html>

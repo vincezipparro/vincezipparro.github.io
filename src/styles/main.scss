@@ -294,6 +294,12 @@ a {
 
 // Two identical halves tiled across a double-width layer, so translating by
 // half the layer lands on the same cloud shapes and the drift never seams.
+//
+// Every gradient below is clipped to its own tile, so a cloud that reaches past
+// an edge loses the overflow instead of wrapping onto the next tile. Any cloud
+// whose visible radius (70% of the stated radius, where the alpha hits zero)
+// crosses 0% or 100% needs an identical twin 100% away: the two partials meet at
+// the tile edge and read as one unbroken cloud.
 .cloud-layer {
   position: absolute;
   top: 0;
@@ -309,18 +315,21 @@ a {
   opacity: 0.6;
   animation-duration: 150s;
   background-image:
-    radial-gradient(38% 26% at 14% 28%, rgba(255, 255, 255, 0.1), transparent 70%),
-    radial-gradient(30% 20% at 44% 18%, rgba(255, 255, 255, 0.07), transparent 70%),
-    radial-gradient(34% 24% at 74% 33%, rgba(255, 255, 255, 0.09), transparent 70%);
+    radial-gradient(38% 26% at 14% 28%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(38% 26% at 114% 28%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(30% 20% at 44% 18%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(34% 24% at 74% 33%, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 70%);
 }
 
 .cloud-layer-near {
   opacity: 0.8;
   animation-duration: 88s;
   background-image:
-    radial-gradient(30% 19% at 8% 46%, rgba(255, 255, 255, 0.08), transparent 70%),
-    radial-gradient(26% 17% at 56% 26%, rgba(255, 255, 255, 0.06), transparent 70%),
-    radial-gradient(32% 21% at 87% 41%, rgba(255, 255, 255, 0.07), transparent 70%);
+    radial-gradient(30% 19% at 8% 46%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(30% 19% at 108% 46%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(26% 17% at 56% 26%, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(32% 21% at 87% 41%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(32% 21% at -13% 41%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 70%);
 }
 
 .hero-skyline {

@@ -21,7 +21,7 @@ test("portfolio includes the core storytelling sections", () => {
 });
 
 test("metadata reflects Vince's current professional focus", () => {
-  assert.match(config, /user_title:\s*Software Engineer in Test II/);
+  assert.match(config, /user_title:\s*Software Engineer$/m);
   assert.match(config, /description:.*quality engineering.*automation.*release engineering/i);
 });
 
