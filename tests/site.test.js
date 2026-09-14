@@ -23,9 +23,9 @@ test("portfolio includes the core storytelling sections", () => {
   }
 });
 
-test("metadata reflects Vince's current professional focus", () => {
+test("metadata presents Vince as a software engineer", () => {
   assert.match(config, /user_title:\s*Software Engineer$/m);
-  assert.match(config, /description:.*quality engineering.*automation.*release engineering/i);
+  assert.match(config, /description:.*shared frameworks.*CI pipelines.*developer tools.*release systems/i);
 });
 
 test("experience timeline covers every employer in the career history", () => {
@@ -57,12 +57,12 @@ test("toolbelt lists the technologies used across those roles", () => {
   }
 });
 
-test("current Invoca role covers Mosaic, Claude Code, and AI orchestration", () => {
+test("current Invoca role covers Mosaic, Claude Code, and agent workflows", () => {
   const invoca = layout.split('<article class="timeline-item">')[1];
   assert.match(invoca, /Mosaic/);
   assert.match(invoca, /consumed by other teams/);
   assert.match(invoca, /Claude Code/);
-  assert.match(invoca, /AI orchestration/);
+  assert.match(invoca, /Agent workflows/);
   assert.match(invoca, /framework development/i);
 });
 
